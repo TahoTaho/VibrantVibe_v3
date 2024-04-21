@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                {{ form.name.label(class="form-control-label") }}
+                        {% if form.name.errors %}
+                            {{ form.name(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.name.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.name(class="form-control form-control-lg") }}
+                        {% endif %}
+
+                <div class="form-group">
+                    {{ form.cuisine.label(class="form-control-label") }}
+                    {% for subfield in form.cuisine %}
+                         <div class="form-check">
+                            {{ subfield(class_="form-check-input") }}
+                            {{ subfield.label(class_="form-check-label") }}
+                         </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.meal_type.label(class="form-control-label") }}
+                    {% for subfield in form.meal_type %}
+                         <div class="form-check">
+                            {{ subfield(class_="form-check-input") }}
+                            {{ subfield.label(class_="form-check-label") }}
+                         </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.dish_type.label(class="form-control-label") }}
+                    {% for subfield in form.dish_type %}
+                         <div class="form-check">
+                            {{ subfield(class_="form-check-input") }}
+                            {{ subfield.label(class_="form-check-label") }}
+                         </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                {{ form.ingredient.label(class="form-control-label") }}
+                        {% if form.ingredient.errors %}
+                            {{ form.ingredient(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.ingredient.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.ingredient(class="form-control form-control-lg") }}
+                        {% endif %}
+                </div>
+
+                <div class="form-group">
+                {{ form.instruction.label(class="form-control-label") }}
+                        {% if form.instruction.errors %}
+                            {{ form.instruction(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.instruction.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.instruction(class="form-control form-control-lg") }}
+                        {% endif %}
+                </div>
+
+                <div class="form-group">
+                        {{ form.picture.label() }}
+                        {{ form.picture(class="form-control-file") }}
+                        {% if form.picture.errors %}
+                            {% for error in form.picture.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+            </fieldset>
+
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+        </form>
+    </div>
+{% endblock content %}

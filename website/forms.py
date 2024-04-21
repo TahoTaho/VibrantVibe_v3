@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, RadioField
 from wtforms.validators import InputRequired,  Length, Email, EqualTo, ValidationError
 from website.models import User
 
@@ -35,13 +35,24 @@ class UpdateAccountForm(FlaskForm):
     submit = SubmitField('Update')
 
     def validate_username(self, username):
-        if username.data != current_user.username:
+        if username.data.strip() != current_user.username.strip():
+            print(username.data != current_user.username)
             user = User.query.filter_by(username=username.data).first()
             if user:
                 raise ValidationError('That username is taken. Please choose a different one')
 
     def validate_email(self, email):
-        if email.data != current_user.email:
+        if email.data.strip() != current_user.email.strip():
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('That email is taken. Please choose a different one')
+
+class UploadForm(FlaskForm):
+    name = StringField('Name', validators=[InputRequired()])
+    cuisine = RadioField('Cuisine', choices=["Italian", "Indian", "Mexican", "Japanese"], validators=[InputRequired()])
+    meal_type = RadioField('Meal Type', choices=["Snack", "Breakfast", "Lunch", "Dinner"], validators=[InputRequired()])
+    dish_type = RadioField('Dish Type', choices=["Pasta", "Salad", "Curry", "Dessert"], validators=[InputRequired()])
+    ingredient = TextAreaField('Ingredients', validators=[InputRequired()])
+    instruction = TextAreaField('Instructions', validators=[InputRequired()])
+    picture = FileField('Dish Image', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Upload Recipe')
