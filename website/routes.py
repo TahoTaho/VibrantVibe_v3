@@ -3,11 +3,12 @@ import os
 import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
-from website import app, db, bcrypt
-from website.forms import RegistrationForm, LoginForm, UpdateAccountForm, UploadForm
+from website import app, db, bcrypt, mail
+from website.forms import RegistrationForm, LoginForm, UpdateAccountForm, UploadForm, ResetPasswordForm, RequestResetForm
 from website.models import User, Recipe
-from flask_login import login_user, current_user ,logout_user, login_required
+from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy import desc
+from flask_mail import Message
 
 
 @app.route("/")
@@ -19,7 +20,11 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    page = request.args.get('page', 1, type=int)
+    recipes = Recipe.query.filter_by(meal_type='Lunch') \
+        .order_by(desc(Recipe.date_posted)) \
+        .paginate(page=page, per_page=5)
+    return render_template('home.html', recipes=recipes)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -95,8 +100,8 @@ def new_recipe():
                         cuisine=form.cuisine.data,
                         meal_type=form.meal_type.data,
                         dish_type=form.dish_type.data,
-                        ingredient=form.ingredient.data,
-                        instruction=form.instruction.data,
+                        ingredients=form.ingredient.data,
+                        instructions=form.instruction.data,
                         image_file=picture_file,
                         date_posted=date.today(),
                         creator=current_user)
@@ -109,7 +114,7 @@ def new_recipe():
 @app.route("/recipe/<int:recipe_id>")
 def recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
-    return render_template('recipe.html', title=recipe.name, recipe=recipe)
+    return render_template('recipe_detail.html', title=recipe.name, recipe=recipe)
 
 @app.route("/recipe/<int:recipe_id>/update", methods=['GET','POST'])
 @login_required
@@ -124,8 +129,8 @@ def update_recipe(recipe_id):
         recipe.name = form.name.data
         recipe.cuisine = form.cuisine.data
         recipe.dish_type = form.dish_type.data
-        recipe.ingredient = form.ingredient.data
-        recipe.instruction = form.instruction.data
+        recipe.ingredients = form.ingredient.data
+        recipe.instructions = form.instruction.data
         recipe.image_file = picture_file
         db.session.commit()
         flash('Your recipe has been update', 'success')
@@ -135,8 +140,8 @@ def update_recipe(recipe_id):
         form.name.data = recipe.name
         form.cuisine.data = recipe.cuisine
         form.dish_type.data = recipe.dish_type
-        form.ingredient.data = recipe.ingredient
-        form.instruction.data = recipe.instruction
+        form.ingredient.data = recipe.ingredients
+        form.instruction.data = recipe.instructions
     return render_template('create_recipe.html', title='Update Recipe', form=form, legend='Update Recipe')
 
 @app.route("/recipe/<int:recipe_id>/delete", methods=['POST'])
@@ -166,3 +171,42 @@ def uploaded_recipes():
         .order_by(desc(Recipe.date_posted)) \
         .paginate(page=page, per_page=5)
     return render_template('user_recipes.html', recipes=recipes, user=current_user)
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request', sender='noreplydemo.com', recipients=[user.email])
+    msg.body = f'''
+    To reset your password, visit the following link 
+{url_for('reset_token', token=token, _external=True)}
+    If you did not make this request then ignore this email
+    '''
+
+
+@app.route("/reset_password", methods=['GET','POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('An email has been sent with instructions to reset your password.', 'info')
+        return redirect(url_for('login'))
+    return render_template('reset_request.html', title='Reset Password', form=form)
+
+@app.route("/reset_password/<token>", methods=['GET','POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash('That is an invalid or expired token', 'warning')
+        return redirect(url_for('reset_request'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash('Your password has been updated', 'success')
+        return redirect(url_for('login'))
+    return render_template('reset_token.html', title='Reset Password', form=form)

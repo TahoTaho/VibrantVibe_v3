@@ -1,2 +1,5 @@
 username = 'kyle'
-password = 'Jojo12345'
+password = 'Salvador1'
+
+email = 'salvador.kylemathew@auf.edu.ph'
+email_pass = 'salvadorkyle321'

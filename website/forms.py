@@ -56,3 +56,17 @@ class UploadForm(FlaskForm):
     instruction = TextAreaField('Instructions', validators=[InputRequired()])
     picture = FileField('Dish Image', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Upload Recipe')
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email', validators=[InputRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('This email doesnt exist. You must register first.')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[InputRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')

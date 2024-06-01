@@ -10,14 +10,14 @@
         <h2 class="article-title">{{ recipe.name }}</h2>
           <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
           <h4 class="article-title"> Ingredients </h4>
-          {% for ingredient in recipe.ingredient.split('*') %}
+          {% for ingredient in recipe.ingredients.split('*') %}
             {% if ingredient.strip() %}
                 <p>* {{ ingredient.strip() }}</p>
             {% endif %}
           {% endfor %}
 
           <h4 class="article-title"> Instruction </h4>
-          {% for step in recipe.instruction.split('\n') %}
+          {% for step in recipe.instructions.split('\n') %}
             <p> {{ step }} </p>
           {% endfor %}
 

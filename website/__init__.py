@@ -1,11 +1,14 @@
+import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from website.credential import username, password
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_mail import Mail
 
-server = 'databasev1.database.windows.net'
-database = 'VibrantVibe_Database'
+server = 'vibrantvibeserver.database.windows.net'
+database = 'DB_VibrantVibe'
 connection_string = f'mssql+pymssql://{username}:{password}@{server}/{database}?charset=utf8'
 
 app = Flask(__name__)
@@ -17,5 +20,11 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
+app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
+mail = Mail(app)
 
 from website import routes
