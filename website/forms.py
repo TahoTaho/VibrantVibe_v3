@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, RadioField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import InputRequired,  Length, Email, EqualTo, ValidationError
 from website.models import User
 
@@ -49,9 +49,6 @@ class UpdateAccountForm(FlaskForm):
 
 class UploadForm(FlaskForm):
     name = StringField('Name', validators=[InputRequired()])
-    cuisine = RadioField('Cuisine', choices=["Italian", "Indian", "Mexican", "Japanese"], validators=[InputRequired()])
-    meal_type = RadioField('Meal Type', choices=["Snack", "Breakfast", "Lunch", "Dinner"], validators=[InputRequired()])
-    dish_type = RadioField('Dish Type', choices=["Pasta", "Salad", "Curry", "Dessert"], validators=[InputRequired()])
     ingredient = TextAreaField('Ingredients', validators=[InputRequired()])
     instruction = TextAreaField('Instructions', validators=[InputRequired()])
     picture = FileField('Dish Image', validators=[FileAllowed(['jpg', 'png'])])

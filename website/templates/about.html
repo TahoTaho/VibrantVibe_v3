@@ -1,1 +1,100 @@
 {% extends "layout.html" %}
+{% block content %}
+<div class="main-contents">
+        <img src="{{ url_for('static', filename='recipe pictures/lunch.png') }}" alt="Healthy Food" class="background-image">
+        <div class="overlay"></div>
+        <div class="content-overlay">
+            <h1>About Us</h1>
+        </div>
+    </div>
+
+    <section class="about-vibrantvibes">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="about-title">Vibrant Vibe</h2>
+                <br>
+                <p class="about-description">Vibrant Vibe is a web application designed to help individuals make healthier food choices to support their fitness goals. By offering a diverse collection of nutritious and delicious recipes, users can discover, share, and collaborate on meal ideas tailored to their dietary preferences and fitness objectives.</p>
+                <br>
+                <p class="about-description"> Vibrant Vibe is more than just a web application; it's a comprehensive platform dedicated to empowering individuals on their journey towards better health and fitness. At its core, Vibrant Vibe is designed to revolutionize how people approach nutrition, offering a multifaceted solution to address diverse dietary needs and fitness aspirations</p>
+            </div>
+            <img src="{{ url_for('static', filename='Background Pictures/logo.png') }}" alt="VibrantVibes Logo" class="about-image">
+        </div>
+    </section>
+    <section class="about-vibrantvibes">
+        <div class="container">
+            <div class="about-content">
+                <p class="about-description">Vibrant Vibe fosters a supportive environment where users can learn from each other and cultivate healthier eating habits. Ultimately, this application aims to inspire and motivate users to prioritize nutrition and enhance their overall fitness journey.</p>
+                <br>
+                <p class="about-description"> Ultimately, Vibrant Vibe is more than just a tool for meal planning; it's a holistic lifestyle companion dedicated to inspiring positive transformation. By fostering a culture of wellness, community, and education, our platform aims to empower individuals to take control of their health, prioritize nutrition, and embark on a journey towards lifelong vitality and well-being.</p>
+                <hr>
+            </div>
+        </div>
+    </section>
+    <section class="about-vibrantvibes">
+        <div class="container">
+            <div class="about-content">
+                <h2 class="about-title">Mission and Vision</h2>
+                <br>
+                <h2>Mission</h2>
+                <br>
+                <p class="about-description">Our mission is to help gym-members and other individuals identify their needs and transform their health through nutrition. With our application, we aim to provide them with a diverse range of carefully curated food recipe ideas that not only cater to their dietary preferences but also nourish their bodies, support their fitness goals, and promote overall well-being. By offering a comprehensive platform that empowers users to make informed choices about their nutrition, we strive to inspire positive lifestyle changes, foster healthy eating habits, and facilitate long-term success on their fitness journey. Through our commitment to excellence and innovation, we seek to redefine the way people approach nutrition and empower individuals to lead healthier, happier lives."</p>
+
+                <br>
+                <h2>Vision</h2>
+                <br>
+                <p class="about-description">Our vision is to become the premier destination for individuals seeking to embrace a healthier lifestyle by promoting sustainable and mindful eating habits. We aspire to create a vibrant community where individuals from all walks of life come together to support, motivate, and inspire each other on their fitness journey. By harnessing the power of technology and community, we aim to revolutionize the way people approach nutrition and fitness, empowering individuals to make positive lifestyle changes that lead to long-term health and happiness. Through our innovative platform, we envision a future where VibrantVibes serves as a beacon of wellness, offering personalized guidance, expert insights, and a supportive network that empowers users to achieve their health and fitness goals, one nutritious meal at a time."</p>
+
+                <hr>
+            </div>
+        </div>
+    </section>
+    <!-- Add images below "The Team" section -->
+    <section class="whitespace-section">
+        <div class="container">
+            <h2> The Team </h2>
+            <br>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='group photos/kyle.jpg') }}" alt="Image 1">
+                <h3>Kyle Salvador</h3>
+                <p>Back End</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='group photos/andreas.jpg') }}" alt="Image 2">
+                <h3>Andreas Luy</h3>
+                <p>Front End</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='group photos/mika.jpg') }}" alt="Image 3">
+                <h3>Mikhael Capid</h3>
+                <p>Front End</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='group photos/byen.jpg') }}" alt="Image 4">
+                <h3>Bien Tubil</h3>
+                <p>Front End</p>
+            </div>
+        </div>
+    </section>
+
+<footer class="footer"> <! -- FOOTER SECTION -->
+        <div class="footer-content">
+            <div class="footer-section address">
+                <p>Address:</p>
+                <p>IT Building, inside AUF Main Campus</p>
+            </div>
+            <div class="footer-section logo">
+                <a href="#back">
+                    <img src="{{ url_for('static', filename='Background Pictures/logo.png') }}" alt="Vibrant Vibe">
+                </a>
+                <p>&copy; 2024 BSIT 2A. All rights reserved</p>
+            </div>
+            <div class="footer-section social">
+                <p>Follow us on our socials</p>
+                <div class="social-icons">
+                    <a href="#"><img src="{{ url_for('static', filename='icons/facebook.png') }}" alt="Facebook"></a>
+                    <a href="#"><img src="{{ url_for('static', filename='icons/google.png') }}" alt="Google"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock content %}

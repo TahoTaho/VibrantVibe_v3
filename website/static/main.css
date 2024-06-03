@@ -1,80 +1,98 @@
-body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
+body, html  {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+.main-content {
+    flex: 1;
 }
 
-.bg-steel {
-  background-color: #5f788a;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /*   COLOR NG NAVBAR   */
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+.navbar .logo {
+    color: #386641;  /*   COLOR NG BRAND   */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+.navbar .logo img {
+    height: 30px;
+    margin-right: 10px;
 }
 
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+.navbar .logo .highlight {
+    color: #A7C957;
 }
 
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+.navbar .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.article-title {
-  color: #444444;
+.navbar .menu li {
+    margin-right: 50px;
 }
 
-a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+.navbar .menu li a {
+    text-decoration: none;
+    color: #386641; /*   FONT COLOR NG MENU   */
+    font-weight: 2 00;
 }
 
-.article-content {
-  white-space: pre-line;
+.navbar .account {
+    display: flex;
+    align-items: center;
 }
 
-.article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
+.navbar .account span {
+    color: #386641;
+    margin-right: 25px;
+    font-weight: normal;
 }
 
-.article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+.navbar .account .dropdown {
+    margin-right: 10px;
 }
 
-.article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
+.navbar .account .dropdown button {
+    background-color: #A7C957;  /*   COLOR NG DROPDOWN   */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
-.article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
+.navbar .account .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+.navbar .account .dropdown-content a {
+    color: #386641; /*   COLOR NG DROPDOWN TEXTS   */
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
 }
 
-.account-heading {
-  font-size: 2.5rem;
+.navbar .account .dropdown-content a:hover {
+    background-color: #d2d2d2;  /*   COLOR NG HOVER SA DROPDOWN   */
+}
+
+.navbar .account .dropdown:hover .dropdown-content {
+    display: block;
 }

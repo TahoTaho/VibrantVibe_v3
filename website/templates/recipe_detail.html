@@ -1,35 +1,51 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="container">
+    <div class="containers">
+        <button class="back-button" onclick="history.back()">Back</button>
+        <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}" alt="Pinakbet" class="recipe-image">
+        <h1>{{ recipe.name }}</h1>
+        <div class="recipe-details">
+            <div class="details">
+                <p><label>Cuisine: </label>  {{ recipe.cuisine }}</p>
+                <p><label>Meal Type:</label>  {{ recipe.meal_type }}</p>
+                <p><label>Dish Type:</label> {{ recipe.dish_type }}</p>
+                <p><label>User Type:</label> {{ recipe.user_type }}</p>
 
-    <article class="media content-section">
-      <div class="media-body">
-        <div class="article-metadata">
-          <a class="mr-2" href="{{ url_for('user_recipes', username=recipe.creator.username) }}">{{ recipe.creator.username }}</a>
-          <small class="text-muted">{{ recipe.date_posted }}</small>
+                {% if recipe.user_type.strip() == "bodybuilding" %}
+                <p><label>Protein:</label> {{recipe.protein }}</p>
+                    <p><label>Calories:</label> {{recipe.calories }}</p>
+                {% else %}
+                    <p><label>Difficulty:</label>  {{recipe.difficulty }}</p>
+                    <p><label>Affordability:</label>  {{recipe.affordability }}</p>
+                {% endif %}
+            </div>
+            <div class="ingredients">
+                <h4>Ingredients</h4>
+                <ul>
+                    {% for ingredient in recipe.ingredients.split('\n') %}
+                        <li> {{ ingredient }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="ingredients">
+                <h4>Instructions</h4>
+                <ol>
+                    {% for step in recipe.instructions.split('\n') %}
+                        <li> {{ step }} </li>
+                    {% endfor %}
+                </ol>
+            </div>
         </div>
-        <h2 class="article-title">{{ recipe.name }}</h2>
-          <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
-          <h4 class="article-title"> Ingredients </h4>
-          {% for ingredient in recipe.ingredients.split('*') %}
-            {% if ingredient.strip() %}
-                <p>* {{ ingredient.strip() }}</p>
-            {% endif %}
-          {% endfor %}
-
-          <h4 class="article-title"> Instruction </h4>
-          {% for step in recipe.instructions.split('\n') %}
-            <p> {{ step }} </p>
-          {% endfor %}
-
         {% if recipe.creator == current_user %}
         <div>
           <a class="btn btn-secondary" href="{{ url_for('update_recipe', recipe_id=recipe.id) }}"> Update </a>
           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"> Delete </button>
         </div>
         {% endif %}
-
-      </div>
-    </article>
+    </div>
+</div>
 
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -42,7 +58,7 @@
             </button>
           </div>
           <div class="modal-body">
-            ...
+            Deleting this recipe will remove it permanently from your collection. This action cannot be undone.
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

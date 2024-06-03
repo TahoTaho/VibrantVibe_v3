@@ -1,27 +1,87 @@
 {% extends "layout.html" %}
 {% block content %}
-    {% for recipe in recipes.items %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{{ url_for('user_recipes', username=recipe.creator.username) }}">{{ recipe.creator.username }}</a>
-              <small class="text-muted">{{ recipe.date_posted }}</small>
+<div class="main-holder">
+    <img src="{{ url_for('static', filename='recipe pictures/dinner.png') }}" alt="Healthy Food" class="background-image">
+    <div class="overlay"></div>
+    <div class="content-overlay">
+        <h1>Indulge in Healthier Foods!</h1>
+        <h4>Your go-to platform for finding and sharing nutritious recipes. Join our community to discover diverse foods just for you!</h4>
+        <div class="button-container">
+            <button class="button-Discover"><a href="#discover">Discover</a></button>
+            <button class="button-JN">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('recipes') }}"> Join Now</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}"> Join Now</a>
+                {% endif %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="padding-div"></div>
+
+    <div class="home-content">
+        <div class="left-content">
+            <p class="small-text" id="discover">Discover</p>
+            <h4>Fuel Your Fitness Journey <br>with Healthy Recipes</h4>
+        </div>
+        <div class="right-content">
+            <p>Welcome to VibrantVibe, your go-to source for delicious and nutritious recipes designed specifically for gym-goers and fitness enthusiasts. Whether you're looking to build muscle, lose weight, or simply maintain a healthy lifestyle, our collection of recipes will help you achieve your goals.</p>
+        </div>
+    </div>
+
+<div class="padding-div"></div>
+
+<div class="clickable-box-wrapper">
+    {% for recipe in recipes %}
+        <div class="clickable-box">
+            <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">
+                <div class="box-content">
+                    <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}" alt="" class="box-image">
+                    <div class="box-text">
+                        <p class="food-title">{{ recipe.name }}</p>
+                        <div class="food-info">
+                            {% if recipe.user_type.strip() == "bodybuilding" %}
+                                <p><label>Protein:</label> {{recipe.protein }}</p>
+                                <p><label>Calories:</label> {{recipe.calories }}</p>
+                            {% else %}
+                                <p><label>Difficulty:</label>  {{recipe.difficulty }}</p>
+                                <p><label>Affordability:</label>  {{recipe.affordability }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="padding-div"></div>
+
+<div class="center-div">
+    <button class="nav-buttonLM"><a href="{{ url_for('recipes') }}">See all</a></button>
+</div>
+
+<div class="padding-div"></div>
+
+<footer class="footer"> <! -- FOOTER SECTION -->
+        <div class="footer-content">
+            <div class="footer-section address">
+                <p>Address:</p>
+                <p>IT Building, inside AUF Main Campus</p>
             </div>
-            <h2><a class="article-title" href="{{ url_for('recipe', recipe_id=recipe.id) }}">{{ recipe.name }}</a></h2>
-              <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
-          </div>
-        </article>
-    {% endfor %}
-
-    {% for page_num in recipes.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-        {% if page_num %}
-            {% if recipes.page == page_num %}
-                <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}"> {{ page_num }}</a>
-            {% else %}
-                <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}"> {{ page_num }}</a>
-            {% endif %}
-        {% else %}
-
-        {% endif %}
-    {% endfor %}
+            <div class="footer-section logo">
+                <img src="{{ url_for('static', filename='Background Pictures/logo.png') }}" alt="Vibrant Vibe">
+                <p>&copy; 2024 BSIT 2A. All rights reserved</p>
+            </div>
+            <div class="footer-section social">
+                <p>Follow us on our socials</p>
+                <div class="social-icons">
+                    <a href="#"><img src="icons/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="icons/google.png" alt="Google"></a>
+                </div>
+            </div>
+        </div>
+</footer>
 {% endblock content %}

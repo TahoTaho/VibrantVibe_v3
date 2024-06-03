@@ -1,11 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="container">
     <div class="content-section">
+        <h2>Upload Your Food Recipe</h2>
         <form method="POST" action="" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">{{ legend }}</legend>
-                {{ form.name.label(class="form-control-label") }}
+            <div id="photo-preview" class="form-group hidden">
+                <div id="photo-container">
+                    <div class="image-box">
+                        <img id="preview-image" src="#" alt="">
+                    </div>
+                </div>
+                <div class="button-group">
+                    <label for="food-photo" class="custom-file-upload">Upload Image</label>
+                    <input type="file" id="food-photo" name="food-photo" accept="image/*" onchange="displayPhoto()" style="display: none;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form.name.label }}
                         {% if form.name.errors %}
                             {{ form.name(class="form-control form-control-lg is-invalid") }}
                             <div class="invalid-feedback">
@@ -16,35 +29,76 @@
                         {% else %}
                             {{ form.name(class="form-control form-control-lg") }}
                         {% endif %}
+                 </div>
 
                 <div class="form-group">
-                    {{ form.cuisine.label(class="form-control-label") }}
-                    {% for subfield in form.cuisine %}
-                         <div class="form-check">
-                            {{ subfield(class_="form-check-input") }}
-                            {{ subfield.label(class_="form-check-label") }}
-                         </div>
-                    {% endfor %}
+                    <label>Cuisine:</label>
+                    <select required name="cuisine">
+                        <option value="">Select Cuisine</option>
+                        <option value="american">American</option>
+                        <option value="filipino">Filipino</option>
+                        <option value="indian">Indian</option>
+                        <option value="japanese">Japanese</option>
+                        <option value="korean">Korean</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    {{ form.meal_type.label(class="form-control-label") }}
-                    {% for subfield in form.meal_type %}
-                         <div class="form-check">
-                            {{ subfield(class_="form-check-input") }}
-                            {{ subfield.label(class_="form-check-label") }}
-                         </div>
-                    {% endfor %}
+                    <label>Meal Type</label>
+                    <select required name="meal-type">
+                        <option value="">Select Meal Type</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="merienda">Merienda</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="beverages">Beverages</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    {{ form.dish_type.label(class="form-control-label") }}
-                    {% for subfield in form.dish_type %}
-                         <div class="form-check">
-                            {{ subfield(class_="form-check-input") }}
-                            {{ subfield.label(class_="form-check-label") }}
-                         </div>
-                    {% endfor %}
+                    <label>Dish Type:</label>
+                    <select required name="dish-type">
+                        <option value="">Select Dish Type</option>
+                        <option value="pasta">Pasta</option>
+                        <option value="salad">Salad</option>
+                        <option value="curry">Curry</option>
+                        <option value="dessert">Dessert</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                        <label for="user-type">User Type:</label>
+                        <select id="user-type" name="user-type" onchange="showAdditionalFields(this.value)" required>
+                            <option value="">Select User Type</option>
+                            <option value="bodybuilding">Bodybuilding</option>
+                            <option value="casual">Casual</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="protein-calories" style="display: none;">
+                        <label for="protein">Protein:</label>
+                        <input type="number" id="protein" name="protein">
+                        <label for="calories">Calories:</label>
+                        <input type="number" id="calories" name="calories">
+                    </div>
+
+                    <div class="form-group" id="affordability" style="display: none;">
+                        <label for="affordability">Affordability:</label>
+                        <select name="affordability">
+                            <option value="">Select Affordability</option>
+                            <option value="affordable">Affordable</option>
+                            <option value="luxury">Luxury</option>
+                        </select>
+                    </div>
+
+                <div class="form-group" id="difficulty" style="display: none;">
+                    <label for="difficulty">Difficulty:</label>
+                    <select name="difficulty">
+                        <option value="">Select Difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -74,21 +128,38 @@
                             {{ form.instruction(class="form-control form-control-lg") }}
                         {% endif %}
                 </div>
-
-                <div class="form-group">
-                        {{ form.picture.label() }}
-                        {{ form.picture(class="form-control-file") }}
-                        {% if form.picture.errors %}
-                            {% for error in form.picture.errors %}
-                                <span class="text-danger">{{ error }}</span>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-            </fieldset>
-
                 <div class="form-group">
                     {{ form.submit(class="btn btn-outline-info") }}
                 </div>
         </form>
     </div>
+</div>
+
+<script>
+        let recipePic = document.getElementById("preview-image");
+        let inputFile = document.getElementById("food-photo");
+
+        inputFile.onchange = function() {
+            recipePic.src = URL.createObjectURL(inputFile.files[0])
+        }
+
+        function showAdditionalFields(foodType) {
+            var proteinCalories = document.getElementById("protein-calories");
+            var affordability = document.getElementById("affordability");
+
+            if (foodType === "bodybuilding") {
+                proteinCalories.style.display = "block";
+                affordability.style.display = "none";
+                difficulty.style.display = "none"
+            } else if (foodType === "casual") {
+                proteinCalories.style.display = "none";
+                affordability.style.display = "block";
+                difficulty.style.display = "block"
+            } else {
+                proteinCalories.style.display = "none";
+                affordability.style.display = "none";
+                difficulty.style.display = "none"
+            }
+        }
+</script>
 {% endblock content %}
