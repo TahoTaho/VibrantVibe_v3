@@ -1,0 +1,25 @@
+{% extends "recipes.html" %}
+{% block recipelist %}
+<h1 class="section-title">{{ title }}</h1>
+    <div class="menu">
+        {% for recipe in recipes %}
+            <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">
+                <button class="menu-item">
+                    <div class="image-container">
+                        <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
+                    </div>
+                    <div class="description">
+                        <h2>{{ recipe.name }}</h2>
+                        {% if recipe.user_type.strip() == "bodybuilding" %}
+                            <p><label>Protein:</label> {{recipe.protein }}</p>
+                            <p><label>Calories:</label> {{recipe.calories }}</p>
+                        {% else %}
+                            <p><label>Difficulty:</label>  {{recipe.difficulty }}</p>
+                            <p><label>Affordability:</label>  {{recipe.affordability }}</p>
+                        {% endif %}
+                    </div>
+                </button>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

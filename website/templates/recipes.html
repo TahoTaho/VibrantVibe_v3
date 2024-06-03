@@ -1,0 +1,240 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="hero"> <!-- HERO SECTION -->
+    <div class="hero-text">
+        <h1>Cook up <span class="highlight">Healthy</span> Delights</h1>
+        <h2>Discover Nutritious Recipes</h2>
+        <input type="text" placeholder="Search recipe">
+        <div class="buttons">
+            <a href="{{url_for('recipes_bodybuilding')}}">
+                <button onclick="filterRecipes('Body-Builder')">Body-Builder</button>
+            </a>
+            <a href="{{url_for('recipes_casual')}}">
+                <button onclick="filterRecipes('Casual')">Casual</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="categories-section"> <!-- CATEGORIES -->
+    <h3>Categories</h3>
+    <div class="categories">
+        <button class="category-button">
+            <a href="{{url_for('recipes_breakfast')}}">
+                <img src="{{ url_for('static', filename='recipe pictures/breakfast.png') }}" alt="Breakfast">
+                <p>Breakfast</p>
+            </a>
+        </button>
+        <button class="category-button">
+            <a href="{{url_for('recipes_lunch')}}">
+                <img src="{{ url_for('static', filename='recipe pictures/lunch.png') }}" alt="Lunch">
+                <p>Lunch</p>
+            </a>
+        </button>
+        <button class="category-button">
+            <a href="{{url_for('recipes_merienda')}}">
+                <img src="{{ url_for('static', filename='recipe pictures/merienda.png') }}" alt="Merienda">
+                <p>Merienda</p>
+            </a>
+        </button>
+        <button class="category-button">
+            <a href=" {{url_for('recipes_dinner')}}">
+                <img src="{{ url_for('static', filename='recipe pictures/dinner.png') }}" alt="Dinner">
+                <p>Dinner</p>
+            </a>
+        </button>
+        <button class="category-button">
+            <a href="{{url_for('recipes_beverages')}}">
+                <img src="{{ url_for('static', filename='recipe pictures/beverages.png') }}" alt="Beverages">
+                <p>Beverages</p>
+            </a>
+        </button>
+    </div>
+</div>
+
+<div class="categories-section"> <!-- Cuisine -->
+    <h3>Cuisine</h3>
+    <div class="categories">
+        <button class="category-button">
+            <a href="{{url_for('recipes_american')}}">
+                <img src="{{ url_for('static', filename='flags/usaFlag.png') }}" alt="USA">
+                <p>American</p>
+            </a>
+        </button>
+        <button class="category-button">
+            <a href="{{url_for('recipes_filipino')}}">
+                <img src="{{ url_for('static', filename='flags/phFlag.png') }}" alt="Lunch">
+                <p>Filipino</p>
+            </a>
+        </button>
+        <button class="category-button">
+            <a href="{{url_for('recipes_indian')}}">
+                <img src="{{ url_for('static', filename='flags/indiaFlag.png') }}" alt="Merienda">
+                <p>Indian</p>
+            </a>
+        </button>
+        <button class="category-button">
+            <a href="{{url_for('recipes_japanese')}}">
+                <img src="{{ url_for('static', filename='flags/japanFlag.png') }}" alt="Dinner">
+                <p>Japanese</p>
+            </a>
+        </button>
+        <button class="category-button">
+            <a href="{{url_for('recipes_korean')}}">
+                <img src="{{ url_for('static', filename='flags/skFlag.png') }}" alt="Beverages">
+                <p>Korean</p>
+            </a>
+        </button>
+    </div>
+</div>
+
+<section class="recipe-list">
+    {% block recipelist %}
+    <h1 class="section-title">Breakfast</h1>
+    <div class="menu">
+        {% for recipe in recipes %}
+            {% if recipe.meal_type.strip() == "breakfast" %}
+                <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">
+                    <button class="menu-item">
+                        <div class="image-container">
+                            <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
+                        </div>
+                        <div class="description">
+                            <h2>{{ recipe.name }}</h2>
+                            {% if recipe.user_type.strip() == "bodybuilding" %}
+                                <p><label>Protein:</label> {{recipe.protein }}</p>
+                                <p><label>Calories:</label> {{recipe.calories }}</p>
+                            {% else %}
+                                <p><label>Difficulty:</label>  {{recipe.difficulty }}</p>
+                                <p><label>Affordability:</label>  {{recipe.affordability }}</p>
+                            {% endif %}
+                        </div>
+                    </button>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <h1 class="section-title">Lunch</h1>
+    <div class="menu">
+        {% for recipe in recipes %}
+            {% if recipe.meal_type.strip() == "lunch" %}
+                <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">
+                    <button class="menu-item">
+                        <div class="image-container">
+                            <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
+                        </div>
+                        <div class="description">
+                            <h2>{{ recipe.name }}</h2>
+                            {% if recipe.user_type.strip() == "bodybuilding" %}
+                                <p><label>Protein:</label> {{recipe.protein }}</p>
+                                <p><label>Calories:</label> {{recipe.calories }}</p>
+                            {% else %}
+                                <p><label>Difficulty:</label>  {{recipe.difficulty }}</p>
+                                <p><label>Affordability:</label>  {{recipe.affordability }}</p>
+                            {% endif %}
+                        </div>
+                    </button>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <h1 class="section-title">Merienda</h1>
+    <div class="menu">
+        {% for recipe in recipes %}
+            {% if recipe.meal_type.strip() == "merienda" %}
+                <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">
+                    <button class="menu-item">
+                        <div class="image-container">
+                            <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
+                        </div>
+                        <div class="description">
+                            <h2>{{ recipe.name }}</h2>
+                            {% if recipe.user_type.strip() == "bodybuilding" %}
+                                <p><label>Protein:</label> {{recipe.protein }}</p>
+                                <p><label>Calories:</label> {{recipe.calories }}</p>
+                            {% else %}
+                                <p><label>Difficulty:</label>  {{recipe.difficulty }}</p>
+                                <p><label>Affordability:</label>  {{recipe.affordability }}</p>
+                            {% endif %}
+                        </div>
+                    </button>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <h1 class="section-title">Dinner</h1>
+    <div class="menu">
+        {% for recipe in recipes %}
+            {% if recipe.meal_type.strip() == "dinner" %}
+                <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">
+                    <button class="menu-item">
+                        <div class="image-container">
+                            <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
+                        </div>
+                        <div class="description">
+                            <h2>{{ recipe.name }}</h2>
+                            {% if recipe.user_type.strip() == "bodybuilding" %}
+                                <p><label>Protein:</label> {{recipe.protein }}</p>
+                                <p><label>Calories:</label> {{recipe.calories }}</p>
+                            {% else %}
+                                <p><label>Difficulty:</label>  {{recipe.difficulty }}</p>
+                                <p><label>Affordability:</label>  {{recipe.affordability }}</p>
+                            {% endif %}
+                        </div>
+                    </button>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <h1 class="section-title">Beverages</h1>
+    <div class="menu">
+        {% for recipe in recipes %}
+            {% if recipe.meal_type.strip() == "beverages" %}
+                <a href="{{ url_for('recipe', recipe_id=recipe.id) }}">
+                    <button class="menu-item">
+                        <div class="image-container">
+                            <img src="{{url_for('static', filename='recipe_pics/' + recipe.image_file)}}">
+                        </div>
+                        <div class="description">
+                            <h2>{{ recipe.name }}</h2>
+                            {% if recipe.user_type.strip() == "bodybuilding" %}
+                                <p><label>Protein:</label> {{recipe.protein }}</p>
+                                <p><label>Calories:</label> {{recipe.calories }}</p>
+                            {% else %}
+                                <p><label>Difficulty:</label>  {{recipe.difficulty }}</p>
+                                <p><label>Affordability:</label>  {{recipe.affordability }}</p>
+                            {% endif %}
+                        </div>
+                    </button>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endblock %}
+</section>
+
+<footer class="footer"> <! -- FOOTER SECTION -->
+        <div class="footer-content">
+            <div class="footer-section address">
+                <p>Address:</p>
+                <p>IT Building, inside AUF Main Campus</p>
+            </div>
+            <div class="footer-section logo">
+                <img src="{{ url_for('static', filename='Background Pictures/logo.png') }}" alt="Vibrant Vibe">
+                <p>&copy; 2024 BSIT 2A. All rights reserved</p>
+            </div>
+            <div class="footer-section social">
+                <p>Follow us on our socials</p>
+                <div class="social-icons">
+                    <a href="#"><img src="icons/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="icons/google.png" alt="Google"></a>
+                </div>
+            </div>
+        </div>
+</footer>
+
+{% endblock content %}

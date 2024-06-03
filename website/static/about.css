@@ -1,0 +1,111 @@
+.main-contents {
+    position: relative;
+    text-align: center;
+    margin: 0 20px;
+}
+
+.background-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 99%;
+    background-color: rgba(63, 126, 66, 0.5);
+}
+
+.content-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.content-overlay h1 {
+    font-size: 3em;
+}
+
+/* About Vibrant Vibe Section */
+
+.about-vibrantvibes p {
+    background-color: white;
+    text-align: left; /* Align text to left */
+    padding: 40px 20px; /* Adjust padding */
+}
+
+.about-vibrantvibes .container {
+    max-width: 800px; /* Limit width of container */
+    margin: 0 auto; /* Center container */
+}
+
+.about-vibrantvibes .about-title {
+    font-size: 2.5em;
+    margin-bottom: 20px; /* Add spacing */
+}
+
+.about-vibrantvibes .about-title:nth-of-type(1) {
+    color: #a7c957; /* Adjusted color for the first title */
+}
+
+.about-vibrantvibes .about-title:nth-of-type(2) {
+    color: #a7c957; /* Adjusted color for the second title */
+}
+
+.about-vibrantvibes .about-description {
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.6; /* Adjust line height */
+    margin-bottom: 15px; /* Add spacing */
+}
+
+.about-image {
+    max-width: 300px; /* Adjust the maximum width */
+    height: auto; /* Maintain aspect ratio */
+    text-align: center;
+}
+
+/* Whitespace section */
+.whitespace-section {
+    padding: 20px 0; /* Added padding for whitespace */
+    text-align: center; /* Centered text */
+    background-color: white; /* Set background color to a darker gray */
+}
+
+.whitespace-section .container {
+    background-color: white; /* Set background color of container to the same darker gray */
+    padding: 20px; /* Added padding for spacing around images */
+    border-radius: 8px; /* Added border-radius for rounded corners */
+}
+
+.whitespace-section .team-member {
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.whitespace-section img {
+    max-width: 200px; /* Adjusted max-width of images */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px; /* Added margin for spacing between images */
+    padding: 10px; /* Added padding for spacing around images */
+    border-radius: 50%; /* Make the images oval */
+    border: 2px solid white; /* Add a white border */
+}
+
+.whitespace-section .container h2 {
+    font-size: 3em; /* Increase font size */
+    font-weight: 700; /* Increase font weight for emphasis */
+    color: black; /* Change font color to black */
+    text-align: center; /* Center align the text */
+    margin-top: 20px; /* Decrease margin from the top */
+    text-transform: uppercase; /* Transform text to uppercase for emphasis */
+    letter-spacing: 2px; /* Add letter spacing for readability */
+}

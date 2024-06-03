@@ -1,0 +1,212 @@
+.nav-buttonLM {
+    margin-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: white;
+    border: 2px solid #729225;
+}
+
+.nav-buttonLM a {
+    color: #729225;
+    padding: 5px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.padding-div {
+    height: 50px;
+}
+
+.main-holder {
+    position: relative;
+    text-align: center;
+    margin: 0 20px;
+}
+
+.background-image {
+    width: 100%;
+    opacity: 0.5;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(63, 126, 66, 0.5); /* Adjust RGBA values for desired tint */
+}
+
+.content-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional for better text visibility */
+}
+
+.content-overlay h1 {
+    font-size: 2.5em; /* Adjust font size as needed */
+}
+
+.content-overlay h4 {
+    font-size: 1.2em; /* Adjust font size as needed */
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button-container .nav-buttonLM, .button-container .nav-buttonSU {
+    padding: 10px 20px;
+}
+
+.button-Discover {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0px;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+}
+
+.button-JN {
+    background-color: #a7c957;
+    border: 2px solid #a7c957; /* Deeper green-ish border color */
+    border-radius: 0px;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+}
+
+.button-Discover a, .button-JN a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: normal;
+    padding: 5px 20px;
+}
+
+.home-content {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px; /* Adjust margin as needed */
+}
+
+.left-content {
+    width: 35%;
+    text-align: left;
+}
+
+.left-content .small-text {
+    font-size: 1em; /* Adjust font size as needed */
+    font-weight: bold;
+}
+
+.left-content h4 {
+    margin-top: 10px;
+    font-size: 2em; /* Adjust font size as needed */
+}
+
+.right-content {
+    width: 65%;
+    text-align: left;
+    padding-top: 10px;
+    font-size: 17px;
+}
+
+.right-content p {
+    font-size: 1em; /* Adjust font size as needed */
+    line-height: 1.6; /* Adjust line height as needed */
+}
+
+.clickable-box {
+    flex: 1;
+    min-width: 45%;
+}
+
+.clickable-box a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.clickable-box-wrapper {
+    display: flex;
+    justify-content: space-between; /* Adjust spacing between boxes */
+    gap: 50px; /* Adjust gap between boxes if needed */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.box-content {
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    border: 1px solid #386641; /* Adjust border color as needed */
+    border-radius: 5px; /* Adjust border radius as needed */
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.box-content:hover {
+    transform: scale(1.02); /* Optional: Add hover effect */
+}
+
+.box-image {
+    width: 100%;
+    height: 75%; /* Image occupies 75% of the box height */
+    object-fit: cover;
+}
+
+.box-text {
+    height: 25%; /* Text occupies 25% of the box height */
+    padding: 10px;
+    background-color: #f8f8f8; /* Adjust background color as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.food-title {
+    font-size: 1.2em; /* Adjust font size as needed */
+    font-weight: bold;
+    margin: 0px;
+}
+
+.food-info p {
+    margin: 0px;
+}
+
+.food-info label {
+    font-weight: bold;
+}
+
+.food-details, .food-rating {
+    font-size: 0.9em; /* Adjust font size as needed */
+}
+
+.food-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.food-rating {
+    text-align: right; /* Align rating text to the right */
+}
+
+.center-div{
+    display: flex;
+    justify-content: center;
+}

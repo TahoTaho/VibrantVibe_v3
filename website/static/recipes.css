@@ -1,0 +1,240 @@
+.hero {
+    background-image: url('recipe pictures/honeygarlic.png');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.hero-text {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.hero h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.hero p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.hero .highlight {
+    color: #dbff87;
+}
+
+.hero-text input[type="text"] {
+    width: 500px;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: 1em;
+    color: #386641;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.hero-text input[type="text"]::placeholder {
+    color: #386641;
+}
+
+.hero-text input[type="text"]:focus {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero .buttons {
+    margin-top: 20px;
+}
+
+.hero .buttons button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    background-color: #A7C957;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.hero .buttons button:hover {
+    background-color: #386641;
+}
+
+/* CATEGORY */
+
+.categories-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.categories-section h3 {
+    font-size: 1em;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.categories {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.category-button {
+    border: none;
+    background: none;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.category-button img {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 10px;
+}
+
+.category-button p {
+    margin: 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.category-button:hover {
+    transform: scale(1.05);
+}
+
+/* Recipe List */
+
+.recipe-list {
+    margin: 20px 20px 40px;
+    text-align: left;
+}
+
+.section-title {
+    margin-left: 20px;
+    font-size: 2em;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-content: center;
+}
+
+.menu-item {
+    background-color: white;
+    border: none;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    min-width: 300px;
+}
+
+.image-container {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.description {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.description h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.description p {
+    margin: 5px 0;
+    color: #777;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+/* FOOTER SECTION */
+
+.footer {
+    background-color: #386641; /* Color ng footer */
+    padding: 20px 0;
+}
+
+.footer p {
+    color: white;
+}
+
+.footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer .footer-section {
+    flex: 1;
+}
+
+.footer .logo img {
+    height: 40px; /* Adjust the height as needed */
+    margin-bottom: 10px;
+}
+
+.footer .social-icons a img {
+    height: 20px; /* Adjust the size of the social media icons */
+    margin: 0 5px;
+}
+
+.footer .address {
+    text-align: left;
+}
+
+.footer .logo {
+    text-align: center;
+}
+
+.footer .social {
+    text-align: right;
+}

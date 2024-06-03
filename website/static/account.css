@@ -1,0 +1,121 @@
+.form-group label {
+
+}
+
+.account-container {
+    display: flex;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side {
+    width: 40%;
+    padding: 20px;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-picture {
+    width: 300px;
+    height: 300px;
+    border-radius: 10%; /* to make it circular */
+    margin-bottom: 10px;
+}
+
+.upload-button {
+    background-color: #729225;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.category {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.category-box {
+    background-color: white;
+    border: 2px solid #729225;
+    border-radius: 10px;
+    padding: 10px 50px;
+    display: inline-block;
+}
+
+.right-side {
+    width: 60%; /* Adjust width as needed */
+    padding: 20px;
+}
+
+.user-bio {
+    margin-bottom: 20px;
+}
+
+.user-bio h3 {
+    margin-right: 20px; /* slight indent */
+}
+
+.bio-text {
+    background-color: #f0f0f0; /* grey-ish box */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.uploaded-recipes {
+    margin-bottom: 20px;
+}
+
+.uploaded-recipes h3 {
+    margin-bottom: 10px;
+}
+
+.recipe-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipe {
+    width: calc(33.33% - 10px); /* adjust width to fit 3 recipes */
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: cover;
+}
+
+.recipe:hover {
+    transform: scale(1.02);
+}
+
+.recipe img {
+    width: 100%;
+    height: 75%;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+    display: block;
+}
+
+.recipe p {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

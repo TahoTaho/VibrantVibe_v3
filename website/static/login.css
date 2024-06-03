@@ -1,0 +1,133 @@
+.background {
+    background-image: url('Background Pictures/loginBG.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#register,
+#request-reset{
+    width: 600px;
+}
+
+.login-signup-container {
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    box-shadow: 1px 12px 20px rgba(0, 0, 0, 0.1);
+    width: 70%; /* Adjust width to make it larger */
+    max-width: 1200px; /* Optional: set a maximum width */
+    height: 65%; /* Adjust height to make it larger */
+}
+
+.fgPass {
+    margin-left: 280px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+}
+
+.left-image img {
+    border-radius: 10px 0 0 10px;
+    width: 500px;
+    height: auto;
+}
+
+.form-container {
+    padding: 40px;
+    flex: 1;
+}
+
+#login-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.label {
+    margin-bottom: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.input {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.signup {
+    padding: 15px 50px;
+    background-color: #A7C957;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.signup:hover{
+    background-color: #386641;
+}
+
+.signUpLink {
+    color:white;
+    text-decoration: none;
+}
+
+.login {
+    padding: 15px 100px;
+    background-color: #386641;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.login:hover {
+    background-color: #A7C957;
+}
+
+.loginLink {
+    color: white;
+    text-decoration: none;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    margin-left: 150px;
+}
+
+.social-icons {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+p {
+    color: #386641;
+    margin-top: 40px;
+    margin-left: 150px;
+}
+
+a {
+    color: #386641;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
