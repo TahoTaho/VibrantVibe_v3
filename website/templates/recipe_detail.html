@@ -40,7 +40,6 @@
         </div>
         {% if recipe.creator == current_user %}
         <div>
-          <a class="btn btn-secondary" href="{{ url_for('update_recipe', recipe_id=recipe.id) }}"> Update </a>
           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"> Delete </button>
         </div>
         {% endif %}
